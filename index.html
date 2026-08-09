@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>MySQL Connection Details</title>
 
     <style>
@@ -25,7 +24,7 @@
         }
 
         .card {
-            background: #ffffff;
+            background: #fff;
             border: 1px solid #ddd;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -71,14 +70,9 @@
             padding: 13px;
             border: 1px solid #ddd;
             border-radius: 6px;
-            background: #ffffff;
+            background: #fff;
             font-size: 15px;
-            color: #333;
             outline: none;
-        }
-
-        .input-field:focus {
-            border-color: #6f42c1;
         }
 
         .date-input {
@@ -91,8 +85,23 @@
             color: #3949ab;
         }
 
-        @media (max-width: 600px) {
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            border: 0;
+            border-radius: 6px;
+            background: #6f42c1;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
+        .submit-btn:hover {
+            background: #59339d;
+        }
+
+        @media (max-width: 600px) {
             body {
                 padding: 20px 10px;
             }
@@ -100,10 +109,6 @@
             .row {
                 grid-template-columns: 1fr;
                 gap: 0;
-            }
-
-            .title {
-                font-size: 19px;
             }
 
             .body {
@@ -117,7 +122,6 @@
 
 <div class="container">
 
-    <!-- MySQL Connection Details -->
     <div class="card">
 
         <div class="title">
@@ -126,102 +130,77 @@
 
         <div class="body">
 
-            <div class="row">
+            <form onsubmit="submitForm(event)">
 
-                <!-- LEFT SIDE -->
-                <div>
+                <div class="row">
 
-                    <!-- Username -->
-                    <div class="field">
-                        <div class="label">MySQL Username</div>
+                    <!-- LEFT -->
+                    <div>
 
-                        <div class="value">
-                            if0_42501725
-                        </div>
-                    </div>
-
-
-                    <!-- Hostname -->
-                    <div class="field">
-                        <div class="label">MySQL Hostname</div>
-
-                        <div class="value">
-                            sql200.infinityfree.com
-                        </div>
-                    </div>
-
-
-                    <!-- Today's Date -->
-                    <div class="field">
-
-                        <div class="label">
-                            Today's Date
+                        <div class="field">
+                            <div class="label">MySQL Username</div>
+                            <div class="value">if0_42501725</div>
                         </div>
 
-                        <input
-                            type="text"
-                            id="todayDate"
-                            class="input-field date-input"
-                            disabled
-                        >
-
-                    </div>
-
-
-                    <!-- Extra Input -->
-                    <div class="field">
-
-                        <div class="label">
-                            Extra Input
+                        <div class="field">
+                            <div class="label">MySQL Hostname</div>
+                            <div class="value">sql200.infinityfree.com</div>
                         </div>
 
-                        <input
-                            type="text"
-                            name="extra_input"
-                            id="extraInput"
-                            class="input-field"
-                            placeholder="Enter value"
-                        >
+                        <div class="field">
+                            <div class="label">Today's Date</div>
+
+                            <input
+                                type="text"
+                                id="todayDate"
+                                class="input-field date-input"
+                                disabled
+                            >
+                        </div>
+
+                        <div class="field">
+                            <div class="label">Extra Input</div>
+
+                            <input
+                                type="text"
+                                id="extraInput"
+                                class="input-field"
+                                placeholder="Enter value"
+                                required
+                            >
+                        </div>
 
                     </div>
 
-                </div>
+                    <!-- RIGHT -->
+                    <div>
 
-
-                <!-- RIGHT SIDE -->
-                <div>
-
-                    <!-- Password -->
-                    <div class="field">
-                        <div class="label">MySQL Password</div>
-
-                        <div class="value">
-                            RC9cpVZnvIM
-                        </div>
-                    </div>
-
-
-                    <!-- Port -->
-                    <div class="field">
-                        <div class="label">
-                            MySQL Port (Optional)
+                        <div class="field">
+                            <div class="label">MySQL Password</div>
+                            <div class="value">RC9cpVZnvIM</div>
                         </div>
 
-                        <div class="value">
-                            3306
+                        <div class="field">
+                            <div class="label">MySQL Port (Optional)</div>
+                            <div class="value">3306</div>
                         </div>
+
                     </div>
 
                 </div>
 
-            </div>
+                <!-- SUBMIT -->
+                <button type="submit" class="submit-btn">
+                    Submit
+                </button>
+
+            </form>
 
         </div>
 
     </div>
 
 
-    <!-- Database List -->
     <div class="card">
 
         <div class="title">
@@ -247,19 +226,13 @@
 
 <script>
 
-    // Automatically show today's date
+    // Today's date
     function setTodayDate() {
 
         const now = new Date();
 
-        const day = String(
-            now.getDate()
-        ).padStart(2, '0');
-
-        const month = String(
-            now.getMonth() + 1
-        ).padStart(2, '0');
-
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
         const year = now.getFullYear();
 
         document.getElementById('todayDate').value =
@@ -267,6 +240,18 @@
     }
 
     setTodayDate();
+
+
+    // Submit
+    function submitForm(event) {
+
+        event.preventDefault();
+
+        const value =
+            document.getElementById('extraInput').value;
+
+        alert("Submitted successfully!\nValue: " + value);
+    }
 
 </script>
 
