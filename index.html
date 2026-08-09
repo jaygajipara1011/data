@@ -3,67 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Database Details</title>
+    <title>MySQL Connection Details</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            margin: 0;
+            padding: 40px 15px;
             font-family: Arial, sans-serif;
             background: #f5f7fb;
-            margin: 0;
-            padding: 40px;
+            color: #263238;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
         }
 
         .card {
-            max-width: 800px;
-            margin: 20px auto;
-            background: white;
+            background: #fff;
             border: 1px solid #ddd;
             border-radius: 10px;
+            margin-bottom: 20px;
             overflow: hidden;
         }
 
         .title {
-            padding: 20px;
+            padding: 22px 28px;
             border-bottom: 1px solid #ddd;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
         }
 
         .body {
-            padding: 25px;
+            padding: 28px;
         }
 
         .row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 35px;
         }
 
-        label {
-            display: block;
+        .field {
+            margin-bottom: 28px;
+        }
+
+        .label {
             color: #607d8b;
             font-size: 13px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 9px;
+            text-transform: uppercase;
         }
 
         .value {
             font-size: 16px;
-            margin-bottom: 25px;
+            color: #263238;
         }
 
-        input {
-            padding: 10px;
+        .date-input {
             width: 100%;
-            box-sizing: border-box;
+            padding: 13px;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            background: #f5f5f5;
+            border-radius: 6px;
+            background: #f3f3f3;
+            font-size: 15px;
+            color: #333;
         }
 
-        @media(max-width:600px) {
+        .database {
+            font-size: 16px;
+            color: #3949ab;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+
             .row {
                 grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .title {
+                font-size: 19px;
             }
         }
     </style>
@@ -71,67 +99,103 @@
 
 <body>
 
-<div class="card">
+<div class="container">
 
-    <div class="title">
-        MySQL Connection Details
-    </div>
+    <!-- MySQL Connection Details -->
+    <div class="card">
 
-    <div class="body">
+        <div class="title">
+            MySQL Connection Details
+        </div>
 
-        <div class="row">
+        <div class="body">
 
-            <div>
-                <label>MYSQL USERNAME</label>
-                <div class="value">if0_42501725</div>
+            <div class="row">
 
-                <label>MYSQL HOSTNAME</label>
-                <div class="value">sql200.infinityfree.com</div>
+                <div>
 
-                <label>TODAY'S DATE</label>
-                <input type="text" id="todayDate" disabled>
-            </div>
+                    <div class="field">
+                        <div class="label">MySQL Username</div>
+                        <div class="value">if0_42501725</div>
+                    </div>
 
-            <div>
-                <label>MYSQL PASSWORD</label>
-                <div class="value">RC9cpVZnvIM</div>
+                    <div class="field">
+                        <div class="label">MySQL Hostname</div>
+                        <div class="value">sql200.infinityfree.com</div>
+                    </div>
 
-                <label>MYSQL PORT (OPTIONAL)</label>
-                <div class="value">3306</div>
+                    <div class="field">
+                        <div class="label">Today's Date</div>
+
+                        <input
+                            type="text"
+                            id="todayDate"
+                            class="date-input"
+                            disabled
+                        >
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div class="field">
+                        <div class="label">MySQL Password</div>
+                        <div class="value">RC9cpVZnvIM</div>
+                    </div>
+
+                    <div class="field">
+                        <div class="label">MySQL Port (Optional)</div>
+                        <div class="value">3306</div>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
     </div>
-</div>
 
-<div class="card">
 
-    <div class="title">
-        List of MySQL Databases
-    </div>
+    <!-- Database List -->
+    <div class="card">
 
-    <div class="body">
+        <div class="title">
+            List of MySQL Databases
+        </div>
 
-        <label>DATABASE NAME</label>
+        <div class="body">
 
-        <div class="value">
-            if0_42501725_data
+            <div class="label">
+                Database Name
+            </div>
+
+            <div class="database">
+                if0_42501725_data
+            </div>
+
         </div>
 
     </div>
 
 </div>
+
 
 <script>
-    const today = new Date();
+    function setTodayDate() {
 
-    const day = String(today.getDate()).padStart(2, '0');
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const year = today.getFullYear();
+        const now = new Date();
 
-    document.getElementById('todayDate').value =
-        `${day}-${month}-${year}`;
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const year = now.getFullYear();
+
+        document.getElementById('todayDate').value =
+            day + '-' + month + '-' + year;
+    }
+
+    setTodayDate();
 </script>
 
 </body>
