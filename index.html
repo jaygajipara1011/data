@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MySQL Connection Details</title>
 
     <style>
@@ -24,7 +25,7 @@
         }
 
         .card {
-            background: #fff;
+            background: #ffffff;
             border: 1px solid #ddd;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -65,14 +66,24 @@
             color: #263238;
         }
 
-        .date-input {
+        .input-field {
             width: 100%;
             padding: 13px;
             border: 1px solid #ddd;
             border-radius: 6px;
-            background: #f3f3f3;
+            background: #ffffff;
             font-size: 15px;
             color: #333;
+            outline: none;
+        }
+
+        .input-field:focus {
+            border-color: #6f42c1;
+        }
+
+        .date-input {
+            background: #f3f3f3;
+            cursor: not-allowed;
         }
 
         .database {
@@ -81,6 +92,7 @@
         }
 
         @media (max-width: 600px) {
+
             body {
                 padding: 20px 10px;
             }
@@ -92,6 +104,10 @@
 
             .title {
                 font-size: 19px;
+            }
+
+            .body {
+                padding: 20px;
             }
         }
     </style>
@@ -112,41 +128,88 @@
 
             <div class="row">
 
+                <!-- LEFT SIDE -->
                 <div>
 
+                    <!-- Username -->
                     <div class="field">
                         <div class="label">MySQL Username</div>
-                        <div class="value">if0_42501725</div>
+
+                        <div class="value">
+                            if0_42501725
+                        </div>
                     </div>
 
+
+                    <!-- Hostname -->
                     <div class="field">
                         <div class="label">MySQL Hostname</div>
-                        <div class="value">sql200.infinityfree.com</div>
+
+                        <div class="value">
+                            sql200.infinityfree.com
+                        </div>
                     </div>
 
+
+                    <!-- Today's Date -->
                     <div class="field">
-                        <div class="label">Today's Date</div>
+
+                        <div class="label">
+                            Today's Date
+                        </div>
 
                         <input
                             type="text"
                             id="todayDate"
-                            class="date-input"
+                            class="input-field date-input"
                             disabled
                         >
+
+                    </div>
+
+
+                    <!-- Extra Input -->
+                    <div class="field">
+
+                        <div class="label">
+                            Extra Input
+                        </div>
+
+                        <input
+                            type="text"
+                            name="extra_input"
+                            id="extraInput"
+                            class="input-field"
+                            placeholder="Enter value"
+                        >
+
                     </div>
 
                 </div>
 
+
+                <!-- RIGHT SIDE -->
                 <div>
 
+                    <!-- Password -->
                     <div class="field">
                         <div class="label">MySQL Password</div>
-                        <div class="value">RC9cpVZnvIM</div>
+
+                        <div class="value">
+                            RC9cpVZnvIM
+                        </div>
                     </div>
 
+
+                    <!-- Port -->
                     <div class="field">
-                        <div class="label">MySQL Port (Optional)</div>
-                        <div class="value">3306</div>
+                        <div class="label">
+                            MySQL Port (Optional)
+                        </div>
+
+                        <div class="value">
+                            3306
+                        </div>
                     </div>
 
                 </div>
@@ -183,12 +246,20 @@
 
 
 <script>
+
+    // Automatically show today's date
     function setTodayDate() {
 
         const now = new Date();
 
-        const day = String(now.getDate()).padStart(2, '0');
-        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(
+            now.getDate()
+        ).padStart(2, '0');
+
+        const month = String(
+            now.getMonth() + 1
+        ).padStart(2, '0');
+
         const year = now.getFullYear();
 
         document.getElementById('todayDate').value =
@@ -196,6 +267,7 @@
     }
 
     setTodayDate();
+
 </script>
 
 </body>
