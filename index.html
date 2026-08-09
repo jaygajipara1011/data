@@ -1,58 +1,36 @@
-<?php
-date_default_timezone_set('Asia/Kolkata');
-
-$mysql_username = 'if0_42501725';
-$mysql_password = 'RC9cpVZnvIM';
-$mysql_hostname = 'sql200.infinityfree.com';
-$mysql_port     = '3306';
-
-$db_name = 'if0_42501725_data';
-
-$today = date('d-m-Y');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MySQL Connection Details</title>
+    <title>Database Details</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background: #f7f8fa;
-            color: #263238;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 0 15px;
+            background: #f5f7fb;
+            margin: 0;
+            padding: 40px;
         }
 
         .card {
-            background: #fff;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
             border: 1px solid #ddd;
             border-radius: 10px;
-            margin-bottom: 20px;
             overflow: hidden;
         }
 
-        .card-title {
-            padding: 20px 24px;
+        .title {
+            padding: 20px;
             border-bottom: 1px solid #ddd;
             font-size: 20px;
-            font-weight: 600;
+            font-weight: bold;
         }
 
-        .card-body {
-            padding: 24px;
+        .body {
+            padding: 25px;
         }
 
         .row {
@@ -61,42 +39,31 @@ $today = date('d-m-Y');
             gap: 30px;
         }
 
-        .field {
-            margin-bottom: 25px;
-        }
-
-        .label {
+        label {
+            display: block;
             color: #607d8b;
             font-size: 13px;
-            font-weight: 600;
+            font-weight: bold;
             margin-bottom: 8px;
-            text-transform: uppercase;
         }
 
         .value {
             font-size: 16px;
-            color: #263238;
-            word-break: break-all;
+            margin-bottom: 25px;
         }
 
         input {
+            padding: 10px;
             width: 100%;
-            padding: 11px;
+            box-sizing: border-box;
             border: 1px solid #ddd;
             border-radius: 5px;
             background: #f5f5f5;
-            font-size: 15px;
         }
 
-        .database {
-            color: #3949ab;
-            font-weight: 500;
-        }
-
-        @media(max-width: 600px) {
+        @media(max-width:600px) {
             .row {
                 grid-template-columns: 1fr;
-                gap: 0;
             }
         }
     </style>
@@ -104,88 +71,68 @@ $today = date('d-m-Y');
 
 <body>
 
-<div class="container">
+<div class="card">
 
-    <!-- MySQL Connection Details -->
-    <div class="card">
-
-        <div class="card-title">
-            MySQL Connection Details
-        </div>
-
-        <div class="card-body">
-
-            <div class="row">
-
-                <div>
-                    <div class="field">
-                        <div class="label">MySQL Username</div>
-                        <div class="value">
-                            <?= htmlspecialchars($mysql_username) ?>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <div class="label">MySQL Hostname</div>
-                        <div class="value">
-                            <?= htmlspecialchars($mysql_hostname) ?>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <div class="label">Today's Date</div>
-                        <input
-                            type="text"
-                            value="<?= $today ?>"
-                            disabled
-                        >
-                    </div>
-                </div>
-
-                <div>
-                    <div class="field">
-                        <div class="label">MySQL Password</div>
-                        <div class="value">
-                            <?= htmlspecialchars($mysql_password) ?>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <div class="label">MySQL Port (Optional)</div>
-                        <div class="value">
-                            <?= htmlspecialchars($mysql_port) ?>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
+    <div class="title">
+        MySQL Connection Details
     </div>
 
+    <div class="body">
 
-    <!-- Database List -->
-    <div class="card">
+        <div class="row">
 
-        <div class="card-title">
-            List of MySQL Databases
+            <div>
+                <label>MYSQL USERNAME</label>
+                <div class="value">if0_42501725</div>
+
+                <label>MYSQL HOSTNAME</label>
+                <div class="value">sql200.infinityfree.com</div>
+
+                <label>TODAY'S DATE</label>
+                <input type="text" id="todayDate" disabled>
+            </div>
+
+            <div>
+                <label>MYSQL PASSWORD</label>
+                <div class="value">RC9cpVZnvIM</div>
+
+                <label>MYSQL PORT (OPTIONAL)</label>
+                <div class="value">3306</div>
+            </div>
+
         </div>
 
-        <div class="card-body">
+    </div>
+</div>
 
-            <div class="label">
-                Database Name
-            </div>
+<div class="card">
 
-            <div class="value database">
-                <?= htmlspecialchars($db_name) ?>
-            </div>
+    <div class="title">
+        List of MySQL Databases
+    </div>
 
+    <div class="body">
+
+        <label>DATABASE NAME</label>
+
+        <div class="value">
+            if0_42501725_data
         </div>
 
     </div>
 
 </div>
+
+<script>
+    const today = new Date();
+
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const year = today.getFullYear();
+
+    document.getElementById('todayDate').value =
+        `${day}-${month}-${year}`;
+</script>
 
 </body>
 </html>
